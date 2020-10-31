@@ -1,0 +1,18 @@
+version : "2.2"
+services: 
+  web:
+    build: .
+    ports:
+      - "5020:5000"
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: development
+  redis:
+    image: "redis:alpine"
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.57.0/24
